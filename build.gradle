@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'biCollector'
+    version =  '1.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter"){
+        exclude(module:'spring-boot-starter-logging');
+    }
+    
+    
+    compile("org.springframework.boot:spring-boot-starter-data-jpa"){
+        exclude(module:'spring-boot-starter-logging');
+    }
+    
+	//compile group: 'org.firebirdsql.jdbc', name: 'jaybird', version: '2.2.5'
+	
+	compile("com.fasterxml.jackson.core:jackson-databind:2.0.1")
+	
+	
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: '2.8.6'
+	
+	compile("mysql:mysql-connector-java:5.1.16")
+    
+	compile("org.springframework.boot:spring-boot-starter-log4j2");
+	 
+	compile group: 'commons-net', name: 'commons-net', version: '1.4.0'
+	
+    testCompile("junit:junit")
+}
+
+javadoc {
+    options.charSet = 'UTF-8'
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    
+    <Appenders>
+        <RollingRandomAccessFile name="MyFile" fileName="log/collector.log" filePattern="log/collector/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+      
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+        
+        <Console name="Console" target="SYSTEM_OUT">
+           <PatternLayout pattern="%d %-7level %logger{36} - %msg%n"/>
+        </Console>
+        
+    </Appenders>
+ 
+    <Loggers>
+   
+        <Root level="WARN">
+            <AppenderRef ref="MyFile" level="INFO" />
+            <AppenderRef ref="Console" level="INFO" />
+        </Root>
+    </Loggers>
+</Configuration>
